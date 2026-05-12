@@ -14,22 +14,26 @@ A personal monthly playlist archive. The owner curates playlists on Apple Music 
 
 No framework. No build step. No dependencies.
 
-- **HTML/CSS/JS** — single `index.html`, vanilla everything
+- **HTML/CSS/JS** — `playlists/index.html` is the archive UI; root `index.html` is a homepage placeholder for now
 - **Google Fonts** — `Syne` (800 weight) for display titles; `IBM Plex Mono` (300/400/500, italic) for all metadata, track listings, and body text
-- **playlists.json** — the only data source, fetched at runtime via `fetch()`
+- **playlists.json** — the only data source, loaded from the site root with `fetch('/playlists.json')` so it works when the page is served from `/playlists/`
 
 ## File structure
 
 ```
 /
-├── index.html          # the entire site
-├── playlists.json      # all playlist data
-├── covers/             # square cover images, one per month
-│   ├── 2026-04.jpg
-│   ├── 2026-03.jpg
+├── index.html              # homepage (placeholder)
+├── playlists/
+│   └── index.html          # playlist grid + tracklists
+├── playlists.json          # all playlist data (site root)
+├── covers/                 # square cover images, one per month
+│   ├── 2026-04.png
+│   ├── 2026-03.png
 │   └── ...
 └── CLAUDE.md
 ```
+
+Cover paths in JSON should be **root-absolute** (e.g. `/covers/2026-05.png`) so they resolve correctly from `/playlists/`. The playlists page also normalizes plain `covers/...` paths to root-absolute if needed.
 
 ## Adding a new month
 
@@ -43,14 +47,14 @@ Prepend a new object to `playlists.json`. The array is ordered newest-first.
   "title": "may",
   "appleUrl": "https://music.apple.com/playlist/...",
   "spotifyUrl": "https://open.spotify.com/playlist/...",
-  "cover": "covers/2026-05.jpg",
+  "cover": "/covers/2026-05.png",
   "tracks": [
     { "n": 1, "title": "Song Title", "artist": "Artist Name" }
   ]
 }
 ```
 
-Drop the corresponding cover image into `covers/` as a square JPG (any resolution — it's `object-fit: cover`).
+Drop the corresponding cover image into `covers/` as a square raster (PNG or JPG — `object-fit: cover`).
 
 ## Color scheme (optional)
 
@@ -71,7 +75,7 @@ Static files only. Drop the folder on any static host and point a subdomain at i
 
 Recommended: **Vercel** or **Netlify** — connect a GitHub repo, push to deploy. No configuration needed.
 
-The site requires a server to load `playlists.json` via `fetch()` — opening `index.html` directly from the filesystem won't work. Use `npx serve .` locally for development.
+The site requires a server to load `playlists.json` via `fetch()` — opening HTML from the filesystem will not load the archive correctly. Use `npx serve .` locally and open **`/playlists/`** (e.g. `http://localhost:3000/playlists/`).
 
 ## Planned
 

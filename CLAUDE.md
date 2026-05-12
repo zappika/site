@@ -14,15 +14,15 @@ A personal monthly playlist archive. The owner curates playlists on Apple Music 
 
 No framework. No build step. No dependencies.
 
-- **HTML/CSS/JS** — `playlists/index.html` is the archive UI; root `index.html` is a homepage placeholder for now
-- **Google Fonts** — `Syne` (800 weight) for display titles; `IBM Plex Mono` (300/400/500, italic) for all metadata, track listings, and body text
+- **HTML/CSS/JS** — `playlists/index.html` is the archive UI; root `index.html` is the personal homepage (Syne + **Inter** as a Graphik-style body font on Google Fonts)
+- **Google Fonts** — `Syne` (800 weight) for display titles; `IBM Plex Mono` (300/400/500, italic) on the playlists page for metadata and track listings
 - **playlists.json** — the only data source, loaded from the site root with `fetch('/playlists.json')` so it works when the page is served from `/playlists/`
 
 ## File structure
 
 ```
 /
-├── index.html              # homepage (placeholder)
+├── index.html              # homepage (profile photo: profile.png at site root)
 ├── playlists/
 │   └── index.html          # playlist grid + tracklists
 ├── playlists.json          # all playlist data (site root)

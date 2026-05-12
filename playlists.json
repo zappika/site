@@ -6,7 +6,7 @@
     "title": "2604",
     "appleUrl": "https://music.apple.com/se/playlist/2604/pl.u-aZb0aLvCVzMMMm?l=en",
     "spotifyUrl": "",
-    "cover": "covers/2026-04.jpg",
+    "cover": "covers/2026-04.png",
     "tracks": [
       { "n": 1, "title": "Weekend", "artist": "Smith Westerns" },
       { "n": 2, "title": "Paper Cup (feat. Sylvan Esso)", "artist": "Real Estate" },
@@ -25,7 +25,7 @@
     "title": "2603",
     "appleUrl": "https://music.apple.com/se/playlist/2603/pl.u-JPAZzymtWJZZZB?l=en",
     "spotifyUrl": "",
-    "cover": "covers/2026-03.jpg",
+    "cover": "covers/2026-03.png",
     "tracks": [
       { "n": 1, "title": "What You Want", "artist": "Angèle & Justice" },
       { "n": 2, "title": "Solid", "artist": "Cut Copy" },
@@ -46,7 +46,7 @@
     "title": "2602",
     "appleUrl": "https://music.apple.com/se/playlist/2602/pl.u-V9D73y7H1Ppppa?l=en",
     "spotifyUrl": "",
-    "cover": "covers/2026-02.jpg",
+    "cover": "covers/2026-02.png",
     "tracks": [
       { "n": 1, "title": "At The Door", "artist": "The Strokes" },
       { "n": 2, "title": "Change (2005 Digital Remaster)", "artist": "Killing Joke" },
@@ -75,7 +75,7 @@
     "title": "2601",
     "appleUrl": "https://music.apple.com/se/playlist/2601/pl.u-mJy82YBsBl555a?l=en",
     "spotifyUrl": "",
-    "cover": "covers/2026-01.jpg",
+    "cover": "covers/2026-01.png",
     "tracks": [
       { "n": 1, "title": "Stay Tonight", "artist": "Swan Lee" },
       { "n": 2, "title": "All Night (Unfinished)", "artist": "Jai Paul" },

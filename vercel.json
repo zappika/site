@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/playlists/:path*",
-      "destination": "https://playlists-seven-azure.vercel.app/:path*"
+      "destination": "https://site-sigma-kohl-57.vercel.app/:path*"
     }
   ]
 }

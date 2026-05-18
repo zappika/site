@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/playlists/:path*",
+      "destination": "https://playlists-seven-azure.vercel.app/:path*"
+    }
+  ]
+}

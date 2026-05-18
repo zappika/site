@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/playlists/",
+      "destination": "https://site-sigma-kohl-57.vercel.app/"
+    },
+    {
       "source": "/playlists/:path*",
       "destination": "https://site-sigma-kohl-57.vercel.app/:path*"
     }

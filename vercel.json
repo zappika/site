@@ -7,6 +7,10 @@
     {
       "source": "/playlists/:path*",
       "destination": "https://site-sigma-kohl-57.vercel.app/:path*"
+    },
+    {
+      "source": "/wine",
+      "destination": "https://french-wine-flashcards-git-main-sarper-se.vercel.app/"
     }
   ]
 }

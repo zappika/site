@@ -6,18 +6,19 @@
   <title>Sarper Erel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400;0,14..32,500;0,14..32,600;1,14..32,400&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #f5f5f0;
-      --fg: #0a0a0a;
-      --fg-dim: rgba(10, 10, 10, 0.35);
-      --fg-mid: rgba(10, 10, 10, 0.6);
-      --border: rgba(10, 10, 10, 0.1);
-      --display: 'Syne', sans-serif;
-      --body: 'Inter', system-ui, sans-serif;
+      --bg: #f4f1e8;
+      --fg: #1a1a1a;
+      --fg-dim: rgba(107, 99, 88, 0.5);
+      --fg-mid: #6b6358;
+      --border: rgba(107, 99, 88, 0.15);
+      --display: 'Fraunces', Georgia, serif;
+      --body: 'Newsreader', Georgia, serif;
+      --mono: 'JetBrains Mono', monospace;
     }
 
     html {
@@ -30,7 +31,7 @@
       font-size: 1rem;
       font-weight: 400;
       font-optical-sizing: auto;
-      line-height: 1.55;
+      line-height: 1.65;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
     }
@@ -68,7 +69,7 @@
 
     .top-name {
       font-family: var(--display);
-      font-weight: 800;
+      font-weight: 600;
       font-size: 0.95rem;
       letter-spacing: -0.02em;
     }
@@ -80,9 +81,10 @@
     }
 
     .nav a {
+      font-family: var(--mono);
       font-size: 0.65rem;
       font-weight: 500;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--fg-mid);
     }
@@ -123,7 +125,7 @@
 
     .hero h1 {
       font-family: var(--display);
-      font-weight: 800;
+      font-weight: 600;
       font-size: clamp(1.75rem, 5vw, 2.5rem);
       letter-spacing: -0.03em;
       line-height: 1.05;
@@ -137,9 +139,10 @@
     }
 
     .hero .site-link {
+      font-family: var(--mono);
       font-size: 0.65rem;
       font-weight: 500;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--fg-dim);
       display: inline-flex;
@@ -162,7 +165,7 @@
 
     h2 {
       font-family: var(--display);
-      font-weight: 800;
+      font-weight: 600;
       font-size: clamp(1.15rem, 3vw, 1.45rem);
       letter-spacing: -0.02em;
       margin-bottom: 1.25rem;
@@ -188,11 +191,12 @@
 
     .list .period {
       display: block;
+      font-family: var(--mono);
       font-size: 0.62rem;
       font-weight: 500;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--fg-dim);
+      color: var(--fg-mid);
       margin-bottom: 0.35rem;
     }
 
@@ -217,11 +221,12 @@
     }
 
     .contact-list .label {
+      font-family: var(--mono);
       font-size: 0.62rem;
       font-weight: 500;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--fg-dim);
+      color: var(--fg-mid);
       min-width: 5.5rem;
     }
   </style>

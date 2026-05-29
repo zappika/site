@@ -1,9 +1,9 @@
 # Plan: Site Restyling
 
-## Last session — 2026-05-25
-- What we built: Full restyle of index.html — new three-font system (Fraunces/Newsreader/JetBrains Mono) and warm palette (#f4f1e8 bg, #1a1a1a text, #6b6358 accents)
-- Where we stopped: All changes committed, phase complete, ready to push
-- Next action: Confirm Vercel auto-deploy triggered and live at sarper.se
+## Last session — 2026-05-29
+- What we built: Removed top navigation bar (name + playlists link) from index.html
+- Where we stopped: Committed and pushed, Vercel deploy triggered
+- Next action: None — site is live and clean
 
 ## Goal
 Update the homepage styling to match an editorial, warm typographic aesthetic. New palette and three-font system: Fraunces for headlines, Newsreader for body, JetBrains Mono for details/dates/labels. Keep all content and structure unchanged — CSS and font imports only.

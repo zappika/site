@@ -1,4 +1,16 @@
 {
+  "redirects": [
+    {
+      "source": "/wine",
+      "destination": "https://gloug.xyz",
+      "permanent": true
+    },
+    {
+      "source": "/wine/:path*",
+      "destination": "https://gloug.xyz/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/playlists/",

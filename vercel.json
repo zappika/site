@@ -11,6 +11,10 @@
     {
       "source": "/wine",
       "destination": "https://french-wine-flashcards-git-main-sarper-se.vercel.app/"
+    },
+    {
+      "source": "/wine/:path*",
+      "destination": "https://french-wine-flashcards-git-main-sarper-se.vercel.app/:path*"
     }
   ]
 }

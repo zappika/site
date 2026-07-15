@@ -6,20 +6,29 @@
   <title>Sarper Erel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap" rel="stylesheet" />
   <script defer src="/_vercel/insights/script.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    @font-face {
+      font-family: 'Departure Mono';
+      src: url('/DepartureMono-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
-      --bg: #f4f1e8;
-      --fg: #1a1a1a;
-      --fg-dim: rgba(107, 99, 88, 0.5);
-      --fg-mid: #6b6358;
-      --border: rgba(107, 99, 88, 0.15);
-      --display: 'Fraunces', Georgia, serif;
-      --body: 'Newsreader', Georgia, serif;
-      --mono: 'JetBrains Mono', monospace;
+      --bg: #fbfbfb;
+      --fg: #171717;
+      --fg-dim: rgba(0, 0, 0, 0.5);
+      --fg-mid: rgba(0, 0, 0, 0.6);
+      --border: rgba(0, 0, 0, 0.15);
+      --accent: oklch(0.5058 0.2886 264.84);
+      --display: 'Departure Mono', monospace;
+      --body: 'EB Garamond', Georgia, serif;
+      --mono: 'Departure Mono', monospace;
     }
 
     html {
@@ -29,10 +38,10 @@
 
     body {
       font-family: var(--body);
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-weight: 400;
       font-optical-sizing: auto;
-      line-height: 1.65;
+      line-height: 1.7;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
     }
@@ -42,7 +51,7 @@
       text-decoration: none;
     }
 
-    a:hover { opacity: 0.7; }
+    a:hover { color: var(--accent); }
 
     .wrap {
       max-width: 42rem;
@@ -88,10 +97,12 @@
 
     .hero h1 {
       font-family: var(--display);
-      font-weight: 600;
-      font-size: clamp(1.75rem, 5vw, 2.5rem);
-      letter-spacing: -0.03em;
-      line-height: 1.05;
+      font-weight: 400;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      letter-spacing: 0.08em;
+      line-height: 1.1;
+      text-transform: uppercase;
+      color: var(--accent);
     }
 
     .hero .tagline {
@@ -104,7 +115,7 @@
     .hero .site-link {
       font-family: var(--mono);
       font-size: 0.65rem;
-      font-weight: 500;
+      font-weight: 400;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--fg-dim);
@@ -128,9 +139,10 @@
 
     h2 {
       font-family: var(--display);
-      font-weight: 600;
-      font-size: clamp(1.15rem, 3vw, 1.45rem);
-      letter-spacing: -0.02em;
+      font-weight: 400;
+      font-size: clamp(0.85rem, 2.2vw, 1rem);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       margin-bottom: 1.25rem;
     }
 
@@ -156,7 +168,7 @@
       display: block;
       font-family: var(--mono);
       font-size: 0.62rem;
-      font-weight: 500;
+      font-weight: 400;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--fg-mid);
@@ -186,7 +198,7 @@
     .contact-list .label {
       font-family: var(--mono);
       font-size: 0.62rem;
-      font-weight: 500;
+      font-weight: 400;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--fg-mid);

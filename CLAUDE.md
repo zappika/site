@@ -7,8 +7,9 @@ Personal homepage at sarper.se. The playlists archive lives in a separate repo (
 No framework. No build step. No dependencies.
 
 - **HTML/CSS/JS** — `index.html` is the homepage, styled after makingsoftware.com (paper white, blueprint blue accent)
-- **Google Fonts** — `EB Garamond` for body text (stand-in for ABC Arizona, which is a paid Dinamo font)
-- **Departure Mono** — self-hosted pixel font (`DepartureMono-Regular.woff2`, free/OFL) for the display title and small-caps labels
+- **Google Fonts** — two variable faces, one request:
+  - `Source Serif 4` (weight + optical size + italic) for body text
+  - `IBM Plex Sans` (weight 400–600) for the display title and uppercase small-caps labels
 
 ## File structure
 
@@ -16,7 +17,6 @@ No framework. No build step. No dependencies.
 /
 ├── index.html                    # homepage (profile photo: profile.png)
 ├── profile.png
-├── DepartureMono-Regular.woff2   # self-hosted pixel font
 ├── vercel.json                   # rewrites /playlists/* → playlists Vercel project
 └── CLAUDE.md
 ```

@@ -6,7 +6,9 @@ Personal homepage at sarper.se. The playlists archive lives in a separate repo (
 
 No framework. No build step. No dependencies.
 
-- **HTML/CSS/JS** — `index.html` is the homepage, styled after makingsoftware.com (paper white, blueprint blue accent)
+- **HTML/CSS/JS** — `index.html` is the homepage. Warm palette, all `oklch()`: cream ground,
+  warm brown-grey text, dusty rose for the name + link hover, muted sage for section headings.
+  Every text colour clears WCAG AA (4.5:1) against the background — keep it that way when retuning.
 - **Google Fonts** — two variable faces, one request:
   - `Source Serif 4` (weight + optical size + italic) for body text
   - `IBM Plex Sans` (weight 400–600) for the display title and uppercase small-caps labels

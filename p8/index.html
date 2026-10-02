@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>P8 — a menu bar radio for the Mac</title>
+  <meta name="description" content="P8 is a radio in your Mac's menu bar with eight preset stations. Click, press a number, listen." />
+  <link rel="icon" href="/p8/icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400..600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/p8/p8.css" />
+  <!-- No analytics on the P8 pages: the privacy policy says P8 tracks nothing. -->
+</head>
+<body>
+  <div class="wrap">
+    <a class="crumb" href="/">← sarper.se</a>
+
+    <header class="hero">
+      <img class="icon" src="/p8/icon.png" width="104" height="104" alt="" />
+      <div>
+        <h1>P8</h1>
+        <p class="tagline">A radio in your Mac's menu bar. Eight stations, one keystroke.</p>
+        <a class="download" href="https://github.com/zappika/p8-releases/releases/latest">Download for Mac</a>
+        <span class="meta">macOS 14 or later · free · signed &amp; notarized</span>
+      </div>
+    </header>
+
+    <section aria-labelledby="about-heading">
+      <h2 id="about-heading">About</h2>
+      <p>Eight hand-picked independent and public stations from Copenhagen, Seattle, Los Angeles, London, Paris and Madrid — one click and one keystroke away. P8 shows the song that's playing when the station publishes it, sends audio to AirPlay speakers including Sonos, and follows your keyboard's play/pause key.</p>
+      <p>No account, no ads, no tracking. P8 plays each broadcaster's own public stream; audio and track information belong to the broadcasters.</p>
+    </section>
+
+    <section aria-labelledby="install-heading">
+      <h2 id="install-heading">Install</h2>
+      <p>Download <strong>P8-&lt;version&gt;.zip</strong>, double-click it, and move <strong>P8</strong> to your Applications folder. The first time you open it, macOS asks whether you want to open an app downloaded from the internet — say Open.</p>
+    </section>
+
+    <section aria-labelledby="help-heading">
+      <h2 id="help-heading">Help</h2>
+      <dl class="qa">
+        <div>
+          <dt>Where is it?</dt>
+          <dd>Click the radio icon next to the clock. If you don't see it, your menu bar may be full — open System Settings › Menu Bar and make sure P8 is allowed.</dd>
+        </div>
+        <div>
+          <dt>Keys</dt>
+          <dd>With the panel open, <kbd>1</kbd>–<kbd>8</kbd> switch stations and <kbd>space</kbd> pauses. Your keyboard's play/pause key works too, and P8 shows up in Control Center's Now Playing.</dd>
+        </div>
+        <div>
+          <dt>AirPlay and Sonos</dt>
+          <dd>Click the AirPlay control in the panel's footer and pick a speaker. Sonos speakers appear there as AirPlay 2 speakers.</dd>
+        </div>
+        <div>
+          <dt>A station says "unavailable"</dt>
+          <dd>The broadcaster's stream didn't answer after several retries. Click it to try again; P8 also retries by itself when your network comes back.</dd>
+        </div>
+        <div>
+          <dt>No song title for some stations</dt>
+          <dd>Some broadcasters don't publish what's playing. P8 shows the station name instead.</dd>
+        </div>
+        <div>
+          <dt>Updates</dt>
+          <dd>P8 checks once a day and offers new versions; Settings › Updates checks on demand. To update, download the new zip, quit P8, and replace the copy in Applications.</dd>
+        </div>
+        <div>
+          <dt>Launch at login</dt>
+          <dd>Settings (the gear icon) › Launch at login.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section aria-labelledby="contact-heading">
+      <h2 id="contact-heading">Contact</h2>
+      <p>Questions, bugs, a station that stopped working: <a href="mailto:sarper@sarper.se">sarper@sarper.se</a>.</p>
+      <p class="fine"><a href="/p8/privacy">Privacy policy</a> · Made in Barcelona.</p>
+    </section>
+  </div>
+</body>
+</html>

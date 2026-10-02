@@ -20,6 +20,7 @@ No framework. No build step. No dependencies.
 ├── index.html                    # homepage (profile photo: profile.png)
 ├── profile.png
 ├── vercel.json                   # rewrites /playlists/* → playlists Vercel project
+├── p8/                           # P8 (menu bar radio) support page + /p8/privacy — App Store support & privacy URLs
 └── CLAUDE.md
 ```
 
@@ -33,3 +34,10 @@ Two separate repos/Vercel projects:
 `vercel.json` in this repo rewrites `/playlists/:path*` to the playlists Vercel deployment URL. After deploying the playlists project, update the `destination` in `vercel.json` with the actual URL and redeploy.
 
 Use `npx serve .` locally to test the homepage.
+
+## P8 pages
+
+`p8/index.html` and `p8/privacy/index.html` are the support and privacy-policy URLs on
+P8's App Store listing — don't move them. Source copy lives in the P8 repo
+(`AppStore/support.md`, `AppStore/privacy-policy.md`); change both together. They
+deliberately carry **no Vercel Analytics**: the policy says P8 tracks nothing.

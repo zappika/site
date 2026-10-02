@@ -1,8 +1,8 @@
-/* P8 pages — the homepage's type and palette, kept in step with index.html by hand. */
+/* P8 pages — the homepage's type and palette (but a white ground), kept in step with index.html by hand. */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: oklch(0.985 0.008 30);
+  --bg: #ffffff;  /* white, unlike the homepage's cream */
   --fg: oklch(0.3 0.012 25);
   --fg-dim: oklch(0.54 0.018 25);
   --fg-mid: oklch(0.53 0.02 25);

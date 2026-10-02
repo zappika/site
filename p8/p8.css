@@ -130,3 +130,20 @@ kbd {
 }
 
 .fine { color: var(--fg-mid); font-size: 0.9rem; }
+
+.stations { display: grid; grid-template-columns: 1fr; gap: 0.5rem 2rem; margin-bottom: 1.5rem; }
+@media (min-width: 480px) { .stations { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(4, auto); grid-auto-flow: column; } }
+.stations div { display: flex; gap: 0.75rem; align-items: baseline; }
+.stations dt {
+  font-family: var(--label);
+  font-size: 0.75rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--fg-dim);
+  width: 0.75rem;
+}
+.stations dd { font-size: 0.97rem; }
+.stations span { color: var(--fg-mid); font-size: 0.85rem; margin-left: 0.3rem; }
+
+.steps { padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 0.9rem; }
+.steps li::marker { color: var(--fg-dim); font-family: var(--label); font-size: 0.85rem; }

@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>P8 — a menu bar radio for the Mac</title>
   <meta name="description" content="P8 is a radio in your Mac's menu bar with eight preset stations. Click, press a number, listen." />
-  <link rel="icon" href="/p8/icon.png" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="icon" href="/p8/icon.png" media="(prefers-color-scheme: light)" />
+  <link rel="icon" href="/p8/icon-dark.png" media="(prefers-color-scheme: dark)" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400..600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..600&display=swap" rel="stylesheet" />
@@ -17,7 +19,10 @@
     <a class="crumb" href="/">← sarper.se</a>
 
     <header class="hero">
-      <img class="icon" src="/p8/icon.png" width="104" height="104" alt="" />
+      <picture>
+        <source srcset="/p8/icon-dark.png" media="(prefers-color-scheme: dark)" />
+        <img class="icon" src="/p8/icon.png" width="104" height="104" alt="" />
+      </picture>
       <div>
         <h1>P8</h1>
         <p class="tagline">A radio in your Mac's menu bar. Eight stations, one keystroke.</p>
@@ -34,7 +39,7 @@
         <div><dt>3</dt><dd>KCRW Eclectic 24 <span>Los Angeles</span></dd></div>
         <div><dt>4</dt><dd>NTS 1 <span>London</span></dd></div>
         <div><dt>5</dt><dd>Les Inrocks <span>Paris</span></dd></div>
-        <div><dt>6</dt><dd>BBC 6 Music <span>London</span></dd></div>
+        <div><dt>6</dt><dd>Double J <span>Sydney</span></dd></div>
         <div><dt>7</dt><dd>FIP <span>Paris</span></dd></div>
         <div><dt>8</dt><dd>RNE Radio 3 <span>Madrid</span></dd></div>
       </dl>
@@ -57,7 +62,7 @@
       <dl class="qa">
         <div>
           <dt>Where is it?</dt>
-          <dd>Click the radio icon next to the clock. If you don't see it, your menu bar may be full — open System Settings › Menu Bar and make sure P8 is allowed.</dd>
+          <dd>Click the little radio tower next to the clock. If you don't see it, your menu bar may be full — open System Settings › Menu Bar and make sure P8 is allowed.</dd>
         </div>
         <div>
           <dt>Keys</dt>

@@ -12,6 +12,23 @@
   --display: 'IBM Plex Sans', system-ui, sans-serif;
   --body: 'Source Serif 4', Georgia, serif;
   --label: 'IBM Plex Sans', system-ui, sans-serif;
+  --kbd-bg: rgba(255, 255, 255, 0.5);
+  color-scheme: light dark;
+}
+
+/* Dark mode follows the system, like the app's own icon does: the same warm hues,
+   lifted for a dark ground. Text keeps WCAG AA (4.5:1) against --bg. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: oklch(0.19 0.008 25);
+    --fg: oklch(0.93 0.008 25);
+    --fg-dim: oklch(0.7 0.015 25);
+    --fg-mid: oklch(0.74 0.016 25);
+    --border: oklch(0.32 0.012 15);
+    --accent: oklch(0.74 0.11 8);
+    --accent-2: oklch(0.74 0.06 160);
+    --kbd-bg: rgba(255, 255, 255, 0.06);
+  }
 }
 
 html { background: var(--bg); color: var(--fg); }
@@ -52,6 +69,7 @@ a:hover { color: var(--accent); text-decoration-color: currentColor; }
   align-items: center;
 }
 
+.hero picture { display: block; line-height: 0; }
 .icon { width: 5.5rem; height: 5.5rem; }
 @media (min-width: 480px) { .icon { width: 6.5rem; height: 6.5rem; } .hero { column-gap: 2rem; } }
 
@@ -126,7 +144,7 @@ kbd {
   padding: 0.05em 0.35em;
   border: 1px solid var(--border);
   border-radius: 0.3em;
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--kbd-bg);
 }
 
 .fine { color: var(--fg-mid); font-size: 0.9rem; }

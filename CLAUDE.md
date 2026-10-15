@@ -19,8 +19,7 @@ No framework. No build step. No dependencies.
 /
 ├── index.html                    # homepage (profile photo: profile.png)
 ├── profile.png
-├── vercel.json                   # rewrites /playlists/* → playlists Vercel project
-├── p8/                           # P8 (menu bar radio) support page + /p8/privacy — App Store support & privacy URLs
+├── vercel.json                   # rewrites /playlists/* → playlists Vercel project; redirects /wine, /p8
 └── CLAUDE.md
 ```
 
@@ -37,7 +36,6 @@ Use `npx serve .` locally to test the homepage.
 
 ## P8 pages
 
-`p8/index.html` and `p8/privacy/index.html` are the support and privacy-policy URLs on
-P8's App Store listing — don't move them. Source copy lives in the P8 repo
-(`AppStore/support.md`, `AppStore/privacy-policy.md`); change both together. They
-deliberately carry **no Vercel Analytics**: the policy says P8 tracks nothing.
+Moved to **p8.surf** (2026-10-15) — they now live in the P8 repo's `web/` folder. `vercel.json`
+here 308-redirects `/p8` and `/p8/*` to p8.surf. Keep those redirects: P8 builds up to 0.4.2
+link to `sarper.se/p8` from their About section.

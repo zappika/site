@@ -16,13 +16,8 @@
       "permanent": true
     },
     {
-      "source": "/p8/",
-      "destination": "https://p8.surf",
-      "permanent": true
-    },
-    {
-      "source": "/p8/:path*",
-      "destination": "https://p8.surf/:path*",
+      "source": "/p8/:path(.*)",
+      "destination": "https://p8.surf/:path",
       "permanent": true
     }
   ],

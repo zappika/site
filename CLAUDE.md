@@ -6,12 +6,12 @@ Personal homepage at sarper.se. The playlists archive lives in a separate repo (
 
 No framework. No build step. No dependencies.
 
-- **HTML/CSS/JS** — `index.html` is the homepage. Warm palette, all `oklch()`: cream ground,
-  warm brown-grey text, dusty rose for the name + link hover, muted sage for section headings.
+- **HTML/CSS/JS** — `index.html` is the homepage. Dark only, no light mode (deliberate). All `oklch()`:
+  near-black ground, off-white text, neutral greys for secondary text and labels, and a Nike-style
+  volt lime accent (`oklch(0.93 0.23 124)`) for the name and link hover. No horizontal divider lines.
   Every text colour clears WCAG AA (4.5:1) against the background — keep it that way when retuning.
-- **Google Fonts** — two variable faces, one request:
-  - `Source Serif 4` (weight + optical size + italic) for body text
-  - `IBM Plex Sans` (weight 400–600) for the display title and uppercase small-caps labels
+- **Google Fonts** — one variable face: `Schibsted Grotesk` (400–900) for everything; hierarchy
+  comes from size and weight.
 
 ## File structure
 

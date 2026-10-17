@@ -19,6 +19,7 @@ No framework. No build step. No dependencies.
 /
 ├── index.html                    # homepage (profile photo: profile.png)
 ├── profile.png
+├── api/np.js                     # Vercel function: latest Last.fm scrobble (user noodleey, fed by P8); needs LASTFM_API_KEY env var
 ├── vercel.json                   # rewrites /playlists/* → playlists Vercel project; redirects /wine, /p8
 └── CLAUDE.md
 ```
@@ -32,7 +33,7 @@ Two separate repos/Vercel projects:
 
 `vercel.json` in this repo rewrites `/playlists/:path*` to the playlists Vercel deployment URL. After deploying the playlists project, update the `destination` in `vercel.json` with the actual URL and redeploy.
 
-Use `npx serve .` locally to test the homepage.
+Use `npx serve .` locally to test the homepage. `serve` doesn't run `/api`, so the "Right now" song row stays hidden locally; the clock (Europe/Madrid) and weather (Open-Meteo, no key) work.
 
 ## P8 pages
 

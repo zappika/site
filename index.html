@@ -21,14 +21,14 @@
   color-scheme:dark;
 }
 html{background:var(--bg);color:var(--fg)}
-body{font-family:var(--f);line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased}
+body{font-family:var(--f);font-size:.9375rem;line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 .avatar{border-radius:50%;object-fit:cover;width:5.5rem;height:5.5rem}
 .arrow{font-size:.85em}
 .list,.contact-list{list-style:none;display:flex;flex-direction:column}
 .detail,.tagline{color:var(--fg-mid)}
 
-.wrap{max-width:42rem;margin:0 auto;padding:0 1.5rem 4rem}
+.wrap{max-width:42rem;margin:0 auto;padding:0 1.5rem 6rem}
 .hero{padding:3.5rem 0 3rem;display:grid;grid-template-columns:auto 1fr;column-gap:1.75rem;row-gap:.3rem}
 .avatar{grid-row:1/4}.hero>:not(.avatar){grid-column:2;justify-self:start}
 h1{font-size:clamp(1.6rem,4.5vw,2.2rem);font-weight:700;letter-spacing:-.02em;line-height:1.1;color:var(--accent)}
@@ -37,7 +37,7 @@ a:hover{color:var(--accent)}
 section{padding:2rem 0 1.5rem}
 
 h2{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-dim);margin-bottom:1.25rem}
-.about p{font-size:1.1rem}
+.about p{font-size:1rem}
 .list{gap:1.3rem}.contact-list{gap:.8rem}
 .period{display:block;font-size:.78rem;color:var(--fg-dim);font-variant-numeric:tabular-nums;margin-bottom:.2rem}
 .label{display:inline-block;min-width:6rem;color:var(--fg-dim);font-size:.85rem}
@@ -45,6 +45,12 @@ h2{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase
 p.detail{margin-top:.2rem;max-width:36rem}
 .contact-list a,.project{text-decoration:underline;text-decoration-color:var(--border);text-underline-offset:.25em}
 .contact-list a:hover,.project:hover{text-decoration-color:var(--accent)}
+.now{position:fixed;inset:auto 0 0;padding:1.75rem 1.5rem .9rem;display:flex;flex-wrap:wrap;justify-content:center;gap:.2rem 1.5rem;
+  font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-dim);
+  background:linear-gradient(transparent,var(--bg) 1.25rem)}
+.now a:hover{color:var(--accent)}
+#now-time{font-variant-numeric:tabular-nums}
+.live{color:var(--accent)}
 </style>
 </head>
 <body>
@@ -154,5 +160,43 @@ p.detail{margin-top:.2rem;max-width:36rem}
       </ul>
     </section>
   </div>
+  <footer class="now" aria-label="Right now">
+    <span>Barcelona <span id="now-time"></span></span>
+    <span id="now-weather" hidden></span>
+    <span id="now-song-row" hidden><span id="now-song-label">Last played</span> <a id="now-song" target="_blank" rel="noopener noreferrer"></a></span>
+  </footer>
+  <script>
+  const $ = id => document.getElementById(id);
+
+  // Clock: Barcelona time, whatever the visitor's zone
+  const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Madrid', weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+  const tick = () => { $('now-time').textContent = fmt.format(new Date()).replace(',', ''); };
+  tick(); setInterval(tick, 10000);
+
+  // Weather: Open-Meteo, no key needed
+  const WMO = { 0: 'clear', 1: 'mostly clear', 2: 'partly cloudy', 3: 'overcast', 45: 'foggy', 48: 'foggy', 51: 'drizzle', 53: 'drizzle', 55: 'drizzle', 61: 'rain', 63: 'rain', 65: 'heavy rain', 71: 'snow', 73: 'snow', 75: 'heavy snow', 80: 'showers', 81: 'showers', 82: 'heavy showers', 95: 'thunderstorm', 96: 'thunderstorm', 99: 'thunderstorm' };
+  fetch('https://api.open-meteo.com/v1/forecast?latitude=41.39&longitude=2.17&current=temperature_2m,weather_code&timezone=Europe%2FMadrid')
+    .then(r => r.json())
+    .then(({ current: c }) => {
+      $('now-weather').textContent = `${Math.round(c.temperature_2m)}°C, ${WMO[c.weather_code] ?? 'weather'}`;
+      $('now-weather').hidden = false;
+    })
+    .catch(() => {});
+
+  // Song: latest Last.fm scrobble, which is what P8 is playing
+  const ago = s => { const m = Math.round((Date.now() / 1000 - s) / 60); return m < 60 ? `${m} min ago` : m < 1440 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} d ago`; };
+  const song = () => fetch('/api/np')
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .then(t => {
+      const a = $('now-song');
+      a.href = t.url;
+      a.textContent = `${t.title} — ${t.artist}` + (t.playing || !t.at ? '' : ` · ${ago(t.at)}`);
+      $('now-song-label').textContent = t.playing ? 'Listening' : 'Last played';
+      $('now-song-label').classList.toggle('live', t.playing);
+      $('now-song-row').hidden = false;
+    })
+    .catch(() => {});
+  song(); setInterval(song, 60000);
+  </script>
 </body>
 </html>

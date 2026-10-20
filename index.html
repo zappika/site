@@ -32,7 +32,7 @@ a{color:inherit;text-decoration:none}
 a:hover{color:var(--accent)}
 .arrow{font-size:.85em}
 .detail{color:var(--fg-mid)}
-:root{--gut:clamp(1rem,3vw,2.5rem)}
+:root{--gut:clamp(1.25rem,8.333vw,10rem)}  /* one column of a 12-col grid in from each edge */
 
 /* Top bar: name on the left, Barcelona now on the right */
 .bar{position:fixed;inset:0 0 auto;z-index:1;display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
@@ -44,7 +44,7 @@ a:hover{color:var(--accent)}
 .name{font-size:1rem;font-weight:700;white-space:nowrap}
 
 /* Above the fold: about text, big, in the left half */
-.about{min-height:100svh;display:flex;align-items:flex-end;padding:6rem var(--gut) 5rem}
+.about{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;gap:.6em;padding:6rem var(--gut) 12svh}
 .about p{max-width:38rem;font-size:clamp(1.6rem,3.4vw,2.6rem);font-weight:500;line-height:1.15;letter-spacing:-.025em}
 
 /* Numbered sections with a hairline on top */
@@ -74,7 +74,8 @@ p.detail{margin-top:.3rem;font-size:.95rem;max-width:30rem}
 
   <main>
   <div class="about">
-    <p>I build digital products. I love being there at the beginning, when nobody’s sure yet what the thing should be. I work it out and build a first version with people who would actually use it.</p>
+    <p>I build digital products. I love being there at the beginning, when nobody’s sure yet what the thing should be.</p>
+    <p>I work it out and build a first version with people who would actually use it.</p>
   </div>
 
   <section aria-labelledby="work-heading">

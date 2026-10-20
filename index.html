@@ -111,7 +111,7 @@ p.detail{margin-top:.3rem;font-size:.95rem;max-width:30rem}
           <span><i>Sunset</i><b id="wx-set"></b></span>
         </span>
       </span>
-      <span id="now-song-row" hidden><span id="now-song-label">Playing</span> <a id="now-song" target="_blank" rel="noopener noreferrer"></a><img id="now-art" alt="" width="120" height="120" hidden /></span>
+      <span id="now-song-row" hidden><span id="now-song-label">Playing</span> <a id="now-song" href="/playlists/"></a><img id="now-art" alt="" width="120" height="120" hidden /></span>
     </div>
   </header>
 
@@ -240,7 +240,6 @@ p.detail{margin-top:.3rem;font-size:.95rem;max-width:30rem}
     .then(r => r.ok ? r.json() : Promise.reject())
     .then(t => {
       const a = $('now-song');
-      a.href = t.url;
       a.textContent = `${t.title} - ${t.artist}`;
       const art = $('now-art');
       if (t.art) { art.src = t.art; art.hidden = false; } else art.hidden = true;

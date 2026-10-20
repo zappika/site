@@ -10,8 +10,8 @@ No framework. No build step. No dependencies.
   near-black ground, off-white text, neutral greys for secondary text and labels, and a Nike-style
   volt lime accent (`oklch(0.93 0.23 124)`) for the name and link hover. No horizontal divider lines.
   Every text colour clears WCAG AA (4.5:1) against the background — keep it that way when retuning.
-- **Google Fonts** — one variable face: `Schibsted Grotesk` (400–900) for everything; hierarchy
-  comes from size and weight.
+- **Fontshare** — one face: `Satoshi` (400/500/700/900) for everything; hierarchy comes from size
+  and weight. Satoshi has no 600, so `font-weight:600` renders as 700.
 
 ## File structure
 

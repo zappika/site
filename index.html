@@ -41,6 +41,15 @@ a:hover{color:var(--accent)}
 #now-time{font-variant-numeric:tabular-nums;color:var(--fg)}
 #now-song-row{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #now-song{color:var(--fg)}
+/* Weather card on BCN hover: 3x2 grid, under 120px tall */
+#now-bcn{position:relative;cursor:default;white-space:nowrap}
+#wx{position:absolute;top:calc(100% + .9rem);right:0;display:grid;grid-template-columns:repeat(3,5.6rem);
+  gap:1px;background:var(--border);border:1px solid var(--border);
+  opacity:0;transform:translateY(-4px);transition:opacity .15s,transform .15s;pointer-events:none}
+#wx>span{background:var(--bg);padding:.5rem .6rem .55rem;display:flex;flex-direction:column;gap:.15rem}
+#wx i{font:normal .62rem/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--fg-dim);text-transform:lowercase}
+#wx b{font-weight:500;font-size:.85rem;line-height:1.2;color:var(--fg);font-variant-numeric:tabular-nums}
+#now-bcn:hover #wx,#now-bcn:focus #wx{opacity:1;transform:none}
 #now-art{position:absolute;top:calc(100% - .5rem);right:var(--gut);width:120px;height:120px;object-fit:cover;
   opacity:0;transform:translateY(-4px);transition:opacity .15s,transform .15s;pointer-events:none}
 #now-song-row:hover #now-art{opacity:1;transform:none}
@@ -70,7 +79,16 @@ p.detail{margin-top:.3rem;font-size:.95rem;max-width:30rem}
   <header class="bar">
     <h1 class="name">Sarper Erel</h1>
     <div class="now" aria-label="Right now">
-      <span>BCN <span id="now-time"></span></span>
+      <span id="now-bcn" tabindex="0">BCN <span id="now-time"></span>
+        <span id="wx" role="tooltip" hidden>
+          <span><i>Now</i><b id="wx-temp"></b></span>
+          <span><i>Sky</i><b id="wx-sky"></b></span>
+          <span><i>Humidity</i><b id="wx-hum"></b></span>
+          <span><i>High / Low</i><b id="wx-hilo"></b></span>
+          <span><i>Sunrise</i><b id="wx-rise"></b></span>
+          <span><i>Sunset</i><b id="wx-set"></b></span>
+        </span>
+      </span>
       <span id="now-song-row" hidden><span id="now-song-label">Playing</span> <a id="now-song" target="_blank" rel="noopener noreferrer"></a><img id="now-art" alt="" width="120" height="120" hidden /></span>
     </div>
   </header>
@@ -170,6 +188,22 @@ p.detail{margin-top:.3rem;font-size:.95rem;max-width:30rem}
   const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Madrid', hour: '2-digit', minute: '2-digit' });
   const tick = () => { $('now-time').textContent = fmt.format(new Date()); };
   tick(); setInterval(tick, 10000);
+
+  // Weather card: Open-Meteo, no key needed
+  const WMO = { 0: 'Clear', 1: 'Mostly clear', 2: 'Partly cloudy', 3: 'Cloudy', 45: 'Fog', 48: 'Fog', 51: 'Drizzle', 53: 'Drizzle', 55: 'Drizzle', 61: 'Rain', 63: 'Rain', 65: 'Heavy rain', 71: 'Snow', 73: 'Snow', 75: 'Heavy snow', 80: 'Showers', 81: 'Showers', 82: 'Heavy showers', 95: 'Storm', 96: 'Storm', 99: 'Storm' };
+  const hm = iso => iso.slice(11, 16);
+  fetch('https://api.open-meteo.com/v1/forecast?latitude=41.39&longitude=2.17&current=temperature_2m,relative_humidity_2m,weather_code&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset&forecast_days=1&timezone=Europe%2FMadrid')
+    .then(r => r.json())
+    .then(({ current: c, daily: d }) => {
+      $('wx-temp').textContent = `${Math.round(c.temperature_2m)}°`;
+      $('wx-sky').textContent = WMO[c.weather_code] ?? '';
+      $('wx-hum').textContent = `${c.relative_humidity_2m}%`;
+      $('wx-hilo').textContent = `${Math.round(d.temperature_2m_max[0])}° / ${Math.round(d.temperature_2m_min[0])}°`;
+      $('wx-rise').textContent = hm(d.sunrise[0]);
+      $('wx-set').textContent = hm(d.sunset[0]);
+      $('wx').hidden = false;
+    })
+    .catch(() => {});
 
 
   // Song: latest Last.fm scrobble, which is what P8 is playing

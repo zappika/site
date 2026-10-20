@@ -38,7 +38,7 @@ Two separate repos/Vercel projects:
 
 `vercel.json` in this repo rewrites `/playlists/:path*` to the playlists Vercel deployment URL. After deploying the playlists project, update the `destination` in `vercel.json` with the actual URL and redeploy.
 
-Use `npx serve .` locally to test the homepage. `serve` doesn't run `/api`, so the song in the top bar stays hidden locally; the clock (Europe/Madrid) works.
+Use `npx serve .` locally to test the homepage. `serve` doesn't run `/api`, so the song in the top bar stays hidden locally; the clock (Europe/Madrid) and the weather card on BCN hover (Open-Meteo, no key) work.
 
 ## P8 pages
 

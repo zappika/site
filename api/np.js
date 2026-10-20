@@ -10,6 +10,16 @@ async function itunesArt(artist, title) {
   } catch { return null; }
 }
 
+// Second fallback: Deezer's catalogue has more of the small radio artists
+async function deezerArt(artist, title) {
+  try {
+    const q = encodeURIComponent(`${artist} ${title}`);
+    const { data = [] } = await (await fetch(`https://api.deezer.com/search?limit=5&q=${q}`)).json();
+    const hit = data.find(x => norm(x.artist.name).includes(norm(artist)) || norm(artist).includes(norm(x.artist.name)));
+    return hit?.album?.cover_medium || null;
+  } catch { return null; }
+}
+
 module.exports = async (req, res) => {
   const key = process.env.LASTFM_API_KEY;
   if (!key) return res.status(500).json({ error: 'LASTFM_API_KEY not set' });
@@ -21,7 +31,7 @@ module.exports = async (req, res) => {
     // Biggest cover Last.fm has; it serves a grey star placeholder when there's no art
     const art = t.image?.at(-1)?.['#text'] || null;
     const lfm = art && !art.includes('2a96cbd8b46e442fc41c2b86b821562f') ? art : null;
-    const cover = lfm || await itunesArt(t.artist['#text'], t.name);
+    const cover = lfm || await itunesArt(t.artist['#text'], t.name) || await deezerArt(t.artist['#text'], t.name);
     res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=60');
     res.json({
       title: t.name,

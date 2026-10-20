@@ -7,6 +7,8 @@ module.exports = async (req, res) => {
   try {
     const r = await fetch(url);
     const t = (await r.json()).recenttracks.track[0];
+    // Biggest cover Last.fm has; it serves a grey star placeholder when there's no art
+    const art = t.image?.at(-1)?.['#text'] || null;
     res.setHeader('Cache-Control', 's-maxage=30, stale-while-revalidate=60');
     res.json({
       title: t.name,
@@ -14,6 +16,7 @@ module.exports = async (req, res) => {
       url: t.url,
       playing: t['@attr']?.nowplaying === 'true',
       at: t.date ? Number(t.date.uts) : null,
+      art: art && !art.includes('2a96cbd8b46e442fc41c2b86b821562f') ? art : null,
     });
   } catch {
     res.status(502).json({ error: 'Last.fm unavailable' });

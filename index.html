@@ -41,6 +41,9 @@ a:hover{color:var(--accent)}
 #now-time{font-variant-numeric:tabular-nums;color:var(--fg)}
 #now-song-row{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #now-song{color:var(--fg)}
+#now-art{position:absolute;top:calc(100% - .5rem);right:var(--gut);width:120px;height:120px;object-fit:cover;
+  opacity:0;transform:translateY(-4px);transition:opacity .15s,transform .15s;pointer-events:none}
+#now-song-row:hover #now-art{opacity:1;transform:none}
 .name{font-size:1rem;font-weight:700;white-space:nowrap}
 
 /* Above the fold: about text, big, in the left half */
@@ -68,7 +71,7 @@ p.detail{margin-top:.3rem;font-size:.95rem;max-width:30rem}
     <h1 class="name">Sarper Erel</h1>
     <div class="now" aria-label="Right now">
       <span>BCN <span id="now-time"></span></span>
-      <span id="now-song-row" hidden><span id="now-song-label">Playing</span> <a id="now-song" target="_blank" rel="noopener noreferrer"></a></span>
+      <span id="now-song-row" hidden><span id="now-song-label">Playing</span> <a id="now-song" target="_blank" rel="noopener noreferrer"></a><img id="now-art" alt="" width="120" height="120" hidden /></span>
     </div>
   </header>
 
@@ -170,13 +173,14 @@ p.detail{margin-top:.3rem;font-size:.95rem;max-width:30rem}
 
 
   // Song: latest Last.fm scrobble, which is what P8 is playing
-  const ago = s => { const m = Math.round((Date.now() / 1000 - s) / 60); return m < 60 ? `${m} min ago` : m < 1440 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} d ago`; };
   const song = () => fetch('/api/np')
     .then(r => r.ok ? r.json() : Promise.reject())
     .then(t => {
       const a = $('now-song');
       a.href = t.url;
-      a.textContent = `${t.title} - ${t.artist}` + (t.playing || !t.at ? '' : ` · ${ago(t.at)}`);
+      a.textContent = `${t.title} - ${t.artist}`;
+      const art = $('now-art');
+      if (t.art) { art.src = t.art; art.hidden = false; } else art.hidden = true;
       $('now-song-label').textContent = t.playing ? 'Playing' : 'Last played';
       $('now-song-row').hidden = false;
     })

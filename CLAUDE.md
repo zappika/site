@@ -6,9 +6,11 @@ Personal homepage at sarper.se. The playlists archive lives in a separate repo (
 
 No framework. No build step. No dependencies.
 
-- **HTML/CSS/JS** — `index.html` is the homepage. Dark only, no light mode (deliberate). All `oklch()`:
-  near-black ground, off-white text, neutral greys for secondary text and labels, and a Nike-style
-  volt lime accent (`oklch(0.93 0.23 124)`) for the name and link hover. No horizontal divider lines.
+- **HTML/CSS/JS** — `index.html` is the homepage. Dark and light follow the system setting
+  (`prefers-color-scheme`); there's deliberately no toggle on the page. All `oklch()`, fully neutral, no
+  accent hue: dark is near-black ground with off-white text; light is barely-off white
+  (`oklch(0.993 0.001 250)`) with near-black text. Greys for secondary text and labels; the name and
+  link hover use full-strength text colour (`--accent` = `--fg`). No horizontal divider lines.
   Every text colour clears WCAG AA (4.5:1) against the background — keep it that way when retuning.
 - **Fontshare** — one face: `Satoshi` (400/500/700/900) for everything; hierarchy comes from size
   and weight. Satoshi has no 600, so `font-weight:600` renders as 700.

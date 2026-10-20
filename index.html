@@ -15,10 +15,17 @@
   --fg-mid:oklch(0.74 0.004 90);  /* secondary  ~8:1 */
   --fg-dim:oklch(0.64 0.004 90);  /* labels     ~5.6:1 */
   --border:oklch(0.28 0.004 90);
-  --accent:oklch(0.93 0.23 124);  /* volt lime */
+  --accent:var(--fg);             /* neutral: emphasis = full-strength text */
   --f:'Satoshi',system-ui,sans-serif;
-  color-scheme:dark;
+  color-scheme:dark light;
 }
+@media (prefers-color-scheme:light){:root{
+  --bg:oklch(0.993 0.001 250);  /* barely-off white */
+  --fg:oklch(0.2 0 0);
+  --fg-mid:oklch(0.42 0 0);
+  --fg-dim:oklch(0.52 0 0);
+  --border:oklch(0.9 0 0);
+}}
 html{font-size:87.5%;background:var(--bg);color:var(--fg)}  /* 14px root: every rem scales with it */
 body{font-family:var(--f);line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}

@@ -29,53 +29,58 @@
 html{font-size:87.5%;background:var(--bg);color:var(--fg)}  /* 14px root: every rem scales with it */
 body{font-family:var(--f);line-height:1.55;min-height:100vh;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
-.avatar{border-radius:50%;object-fit:cover;width:5.5rem;height:5.5rem}
-.arrow{font-size:.85em}
-.list,.contact-list{list-style:none;display:flex;flex-direction:column}
-.detail,.tagline{color:var(--fg-mid)}
-
-.wrap{max-width:42rem;margin:0 auto;padding:0 1.5rem 6rem}
-.hero{padding:3.5rem 0 3rem;display:grid;grid-template-columns:auto 1fr;column-gap:1.75rem;row-gap:.3rem}
-.avatar{grid-row:1/4}.hero>:not(.avatar){grid-column:2;justify-self:start}
-h1{font-size:clamp(1.6rem,4.5vw,2.2rem);font-weight:700;letter-spacing:-.02em;line-height:1.1;color:var(--accent)}
-.site-link{font-size:.8rem;color:var(--fg-dim)}
 a:hover{color:var(--accent)}
-section{padding:2rem 0 1.5rem}
+.arrow{font-size:.85em}
+.detail{color:var(--fg-mid)}
+:root{--gut:clamp(1rem,3vw,2.5rem)}
 
-h2{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-dim);margin-bottom:1.25rem}
-.about p{font-size:1.1rem}
-.list{gap:1.3rem}.contact-list{gap:.8rem}
-.period{display:block;font-size:.78rem;color:var(--fg-dim);font-variant-numeric:tabular-nums;margin-bottom:.2rem}
-.label{display:inline-block;min-width:6rem;color:var(--fg-dim);font-size:.85rem}
-.project{font-weight:600}
-p.detail{margin-top:.2rem;max-width:36rem}
-.contact-list a,.project{text-decoration:underline;text-decoration-color:var(--border);text-underline-offset:.25em}
-.contact-list a:hover,.project:hover{text-decoration-color:var(--accent)}
-.now{position:fixed;inset:auto 0 0;padding:1.75rem 1.5rem .9rem;display:flex;flex-wrap:wrap;justify-content:center;gap:.2rem 1.5rem;
-  font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-dim);
-  background:linear-gradient(transparent,var(--bg) 1.25rem)}
-.now a:hover{color:var(--accent)}
-#now-time{font-variant-numeric:tabular-nums}
-.live{color:var(--accent)}
+/* Top bar: name on the left, Barcelona now on the right */
+.bar{position:fixed;inset:0 0 auto;z-index:1;display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  padding:1.25rem var(--gut) 1.5rem;background:linear-gradient(var(--bg) 60%,transparent)}
+.now{display:flex;gap:.9rem;min-width:0;color:var(--fg-dim)}
+#now-time{font-variant-numeric:tabular-nums;color:var(--fg)}
+#now-song-row{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#now-song{color:var(--fg)}
+.name{font-size:1rem;font-weight:700;white-space:nowrap}
+
+/* Above the fold: about text, big, in the left half */
+.about{min-height:100svh;display:flex;align-items:flex-end;padding:6rem var(--gut) 5rem}
+.about p{max-width:38rem;font-size:clamp(1.6rem,3.4vw,2.6rem);font-weight:500;line-height:1.15;letter-spacing:-.025em}
+
+/* Numbered sections with a hairline on top */
+section{margin:0 var(--gut);padding:1.25rem 0 6rem;border-top:1px solid var(--border);
+  display:grid;grid-template-columns:repeat(8,1fr);row-gap:3rem}
+.label,.num{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.8rem;font-weight:400;color:var(--fg-dim)}
+.label{grid-column:1/5}.num{grid-column:5/9;justify-self:end}
+.list{grid-column:2/9;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:1.6rem 2rem;font-size:1.15rem}
+.period{display:block;font-size:.8rem;color:var(--fg-dim);font-variant-numeric:tabular-nums;margin-bottom:.15rem}
+.list a{text-decoration:underline;text-decoration-color:var(--border);text-underline-offset:.25em}
+.list a:hover{text-decoration-color:var(--accent)}
+p.detail{margin-top:.3rem;font-size:.95rem;max-width:30rem}
+@media (max-width:640px){
+  .list{grid-column:1/9;grid-template-columns:1fr}
+  #now-song-label{display:none}
+}
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <header class="hero">
-      <img class="avatar" src="/profile.png" width="104" height="104" alt="Sarper Erel" />
-      <h1>Sarper Erel</h1>
-      <p class="tagline">Builds digital products in Barcelona, he/him</p>
-      <a class="site-link" href="https://sarper.se" target="_blank" rel="noopener noreferrer">sarper.se <span class="arrow" aria-hidden="true">↗</span></a>
-    </header>
+  <header class="bar">
+    <h1 class="name">Sarper Erel</h1>
+    <div class="now" aria-label="Right now">
+      <span>BCN <span id="now-time"></span></span>
+      <span id="now-song-row" hidden><span id="now-song-label">Playing</span> <a id="now-song" target="_blank" rel="noopener noreferrer"></a></span>
+    </div>
+  </header>
 
-    <section class="about" aria-labelledby="about-heading">
-      <h2 id="about-heading">About</h2>
-      <p>I build digital products. I love being there at the beginning, when nobody’s sure yet what the thing should be. I work it out and build a first version with people who would actually use it.</p>
-    </section>
+  <main>
+  <div class="about">
+    <p>I build digital products. I love being there at the beginning, when nobody’s sure yet what the thing should be. I work it out and build a first version with people who would actually use it.</p>
+  </div>
 
-    <section aria-labelledby="work-heading">
-      <h2 id="work-heading">Work experience</h2>
-      <ul class="list">
+  <section aria-labelledby="work-heading">
+    <h2 class="label" id="work-heading">(Work)</h2>
+    <span class="num" aria-hidden="true">01</span>
+    <ul class="list">
         <li>
           <span class="period">2024 — Now</span>
           Head of Product at Last.app <span class="detail">/ Barcelona 🇪🇸</span>
@@ -97,11 +102,12 @@ p.detail{margin-top:.2rem;max-width:36rem}
           Designer at The Astonishing Tribe / Blackberry <span class="detail">/ Malmö 🇸🇪</span>
         </li>
       </ul>
-    </section>
+  </section>
 
-    <section aria-labelledby="edu-heading">
-      <h2 id="edu-heading">Education</h2>
-      <ul class="list">
+  <section aria-labelledby="edu-heading">
+    <h2 class="label" id="edu-heading">(Education)</h2>
+    <span class="num" aria-hidden="true">02</span>
+    <ul class="list">
         <li>
           <span class="period">2021 — 2021</span>
           Product Strategy at Kellogg School of Management at Northwestern University
@@ -119,75 +125,48 @@ p.detail{margin-top:.2rem;max-width:36rem}
           Mobile Applications at Hyper Island <span class="detail">/ Karlskrona 🇸🇪</span>
         </li>
       </ul>
-    </section>
+  </section>
 
-    <section aria-labelledby="contact-heading">
-      <h2 id="contact-heading">Contact</h2>
-      <ul class="contact-list">
-        <li>
-          <a href="mailto:erel.sarper@gmail.com">
-            <span class="label">Email</span>
-            <span>erel.sarper@gmail.com <span class="arrow" aria-hidden="true">↗</span></span>
-          </a>
-        </li>
-        <li>
-          <a href="https://www.linkedin.com/in/sarpererel/" target="_blank" rel="noopener noreferrer">
-            <span class="label">LinkedIn</span>
-            <span>sarpererel <span class="arrow" aria-hidden="true">↗</span></span>
-          </a>
-        </li>
-        <li>
-          <a href="https://www.instagram.com/sarper/" target="_blank" rel="noopener noreferrer">
-            <span class="label">Instagram</span>
-            <span>sarper <span class="arrow" aria-hidden="true">↗</span></span>
-          </a>
-        </li>
-      </ul>
-    </section>
-
-    <section aria-labelledby="projects-heading">
-      <h2 id="projects-heading">Projects</h2>
-      <ul class="list">
+  <section aria-labelledby="projects-heading">
+    <h2 class="label" id="projects-heading">(Projects)</h2>
+    <span class="num" aria-hidden="true">03</span>
+    <ul class="list">
         <li>
           <span class="period">2026 · Mac app</span>
-          <a class="project" href="https://p8.surf" target="_blank" rel="noopener noreferrer">P8 <span class="arrow" aria-hidden="true">↗</span></a>
+          <a href="https://p8.surf" target="_blank" rel="noopener noreferrer">P8 <span class="arrow" aria-hidden="true">↗</span></a>
           <p class="detail">A radio in your Mac’s menu bar with eight stations I love, from KEXP to FIP. Click the icon, press a number, listen.</p>
         </li>
         <li>
           <span class="period">2026 · Web &amp; iOS</span>
-          <a class="project" href="https://vicolo.space" target="_blank" rel="noopener noreferrer">Vicolo <span class="arrow" aria-hidden="true">↗</span></a>
+          <a href="https://vicolo.space" target="_blank" rel="noopener noreferrer">Vicolo <span class="arrow" aria-hidden="true">↗</span></a>
           <p class="detail">Paste or share an Instagram post and Vicolo saves the place it shows to your own map. Every spot comes with Google and Apple Maps links, on the web and on iPhone.</p>
         </li>
         <li>
           <span class="period">2026 · Helsinki</span>
-          <a class="project" href="https://github.com/rebuild-digital/Rebuild-2-Prototypes" target="_blank" rel="noopener noreferrer">Rebuild 2 Prototypes <span class="arrow" aria-hidden="true">↗</span></a>
+          <a href="https://github.com/rebuild-digital/Rebuild-2-Prototypes" target="_blank" rel="noopener noreferrer">Rebuild 2 Prototypes <span class="arrow" aria-hidden="true">↗</span></a>
           <p class="detail">Prototypes for better European social platforms, built in 48 hours at Rebuild 2. I led the initiative, and the teams built mostly with Lovable and Claude Code.</p>
         </li>
       </ul>
-    </section>
-  </div>
-  <footer class="now" aria-label="Right now">
-    <span>Barcelona <span id="now-time"></span></span>
-    <span id="now-weather" hidden></span>
-    <span id="now-song-row" hidden><span id="now-song-label">Last played</span> <a id="now-song" target="_blank" rel="noopener noreferrer"></a></span>
-  </footer>
+  </section>
+
+  <section aria-labelledby="contact-heading">
+    <h2 class="label" id="contact-heading">(Contact)</h2>
+    <span class="num" aria-hidden="true">04</span>
+    <ul class="list">
+        <li><span class="period">Email</span><a href="mailto:sarper@sarper.se">sarper@sarper.se <span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li><span class="period">LinkedIn</span><a href="https://www.linkedin.com/in/sarpererel/" target="_blank" rel="noopener noreferrer">sarpererel <span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li><span class="period">Instagram</span><a href="https://www.instagram.com/sarper/" target="_blank" rel="noopener noreferrer">sarper <span class="arrow" aria-hidden="true">↗</span></a></li>
+      </ul>
+  </section>
+  </main>
   <script>
   const $ = id => document.getElementById(id);
 
   // Clock: Barcelona time, whatever the visitor's zone
-  const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Madrid', weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
-  const tick = () => { $('now-time').textContent = fmt.format(new Date()).replace(',', ''); };
+  const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Madrid', hour: '2-digit', minute: '2-digit' });
+  const tick = () => { $('now-time').textContent = fmt.format(new Date()); };
   tick(); setInterval(tick, 10000);
 
-  // Weather: Open-Meteo, no key needed
-  const WMO = { 0: 'clear', 1: 'mostly clear', 2: 'partly cloudy', 3: 'overcast', 45: 'foggy', 48: 'foggy', 51: 'drizzle', 53: 'drizzle', 55: 'drizzle', 61: 'rain', 63: 'rain', 65: 'heavy rain', 71: 'snow', 73: 'snow', 75: 'heavy snow', 80: 'showers', 81: 'showers', 82: 'heavy showers', 95: 'thunderstorm', 96: 'thunderstorm', 99: 'thunderstorm' };
-  fetch('https://api.open-meteo.com/v1/forecast?latitude=41.39&longitude=2.17&current=temperature_2m,weather_code&timezone=Europe%2FMadrid')
-    .then(r => r.json())
-    .then(({ current: c }) => {
-      $('now-weather').textContent = `${Math.round(c.temperature_2m)}°C, ${WMO[c.weather_code] ?? 'weather'}`;
-      $('now-weather').hidden = false;
-    })
-    .catch(() => {});
 
   // Song: latest Last.fm scrobble, which is what P8 is playing
   const ago = s => { const m = Math.round((Date.now() / 1000 - s) / 60); return m < 60 ? `${m} min ago` : m < 1440 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} d ago`; };
@@ -196,9 +175,8 @@ p.detail{margin-top:.2rem;max-width:36rem}
     .then(t => {
       const a = $('now-song');
       a.href = t.url;
-      a.textContent = `${t.title} — ${t.artist}` + (t.playing || !t.at ? '' : ` · ${ago(t.at)}`);
-      $('now-song-label').textContent = t.playing ? 'Listening' : 'Last played';
-      $('now-song-label').classList.toggle('live', t.playing);
+      a.textContent = `${t.title} - ${t.artist}` + (t.playing || !t.at ? '' : ` · ${ago(t.at)}`);
+      $('now-song-label').textContent = t.playing ? 'Playing' : 'Last played';
       $('now-song-row').hidden = false;
     })
     .catch(() => {});

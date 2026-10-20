@@ -62,11 +62,12 @@ a:hover{color:var(--accent)}
 #wx b{font-weight:500;font-size:.85rem;line-height:1.2;color:var(--fg);font-variant-numeric:tabular-nums}
 #now-bcn:hover #wx,#now-bcn:focus #wx{opacity:1;transform:none}
 /* Song hover: the cover switches on like a tube TV, somewhere a little random under the song.
-   First look at a cover tunes in pixelated; after that it comes up sharp. */
+   Only the first look at a cover; after that it's a plain fade in the usual spot. */
 #now-art{position:absolute;top:calc(100% - .5rem);right:var(--gut);width:120px;height:120px;pointer-events:none;image-rendering:pixelated;
   translate:var(--x,0) var(--y,0);rotate:var(--r,0deg);opacity:0}
 #now-art.on{animation:tv-on .32s cubic-bezier(.2,.9,.3,1) forwards}
 #now-art.off{animation:tv-off .16s ease-in forwards}
+#now-art.plain{opacity:1;transition:opacity .15s}
 @keyframes tv-on{
   0%  {opacity:1;transform:scale(1.05,.01);filter:brightness(4) contrast(2)}
   35% {opacity:1;transform:scale(1,.08);filter:brightness(3) contrast(1.6)}
@@ -262,7 +263,7 @@ p.detail{margin-top:.3rem;font-size:.95rem;max-width:30rem}
     .catch(() => {});
   song(); setInterval(song, 60000);
 
-  // Song hover art: tube-TV switch-on, pixelated the first time a cover is seen
+  // Song hover art: first look at a cover is a pixelated tube-TV switch-on; later looks just fade in
   const tv = $('now-art'), ctx = tv.getContext('2d'), seen = new Set();
   let img = null, run = 0;
   function setArt(src) {
@@ -285,11 +286,15 @@ p.detail{margin-top:.3rem;font-size:.95rem;max-width:30rem}
   $('now-song-row').addEventListener('mouseenter', () => {
     if (!img?.complete || !img.naturalWidth) return;
     const id = ++run;
+    tv.classList.remove('on', 'off', 'plain');
+    if (seen.has(img.src)) {
+      tv.style.removeProperty('--x'); tv.style.removeProperty('--y'); tv.style.removeProperty('--r');
+      draw(1); void tv.offsetWidth; return tv.classList.add('plain');
+    }
     tv.style.setProperty('--x', `${-Math.round(Math.random() * 40)}px`);
     tv.style.setProperty('--y', `${Math.round(Math.random() * 16)}px`);
     tv.style.setProperty('--r', `${(Math.random() * 4 - 2).toFixed(1)}deg`);
-    tv.classList.remove('off'); void tv.offsetWidth; tv.classList.add('on');
-    if (seen.has(img.src)) return draw(1);
+    void tv.offsetWidth; tv.classList.add('on');
     seen.add(img.src);
     const steps = [40, 40, 24, 24, 15, 10, 10, 6, 15, 4, 2, 1];  // coarse to sharp, one hiccup near the end
     steps.forEach((b, i) => setTimeout(() => run === id && draw(b, (1 - i / steps.length) * .6), i * 55));
@@ -297,6 +302,7 @@ p.detail{margin-top:.3rem;font-size:.95rem;max-width:30rem}
   $('now-song-row').addEventListener('mouseleave', () => {
     run++;
     if (tv.classList.contains('on')) { tv.classList.remove('on'); tv.classList.add('off'); }
+    else tv.classList.remove('plain');
   });
   </script>
 </body>
